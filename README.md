@@ -1,5 +1,7 @@
 # Benice.tools space langing
 
+[>>> TRY IT HERE <<<](https://benice-tools.github.io/benice-space-landing/index.html)
+
 ## Dependencies
 
 - node.js
