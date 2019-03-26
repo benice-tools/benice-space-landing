@@ -1,0 +1,29 @@
+RewriteEngine On
+
+
+# redirect www -> non-www
+
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+
+# redirect http -> https
+
+RewriteCond %{ENV:HTTPS} !on 
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+# hide .html extenstion
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html
+
+RewriteCond %{THE_REQUEST} \.html
+RewriteRule ^(.*)\.html$ /$1 [R=301,L]
+
+
+DirectoryIndex /index.html
+
+# ErrorDocument 404 /404.html

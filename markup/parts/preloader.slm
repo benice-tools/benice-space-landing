@@ -1,0 +1,106 @@
+=mixin('preloader', 'theme')
+	
+	- if (this.theme == 'violet')
+		- backgroundColor = '#210b39';
+		- borderColor = '#E15DD3';
+		- gradientColor1 = '#E15DD3';
+		- gradientColor2 = '#8E34F7';
+	
+	
+	- if (this.theme == 'dark')
+		- backgroundColor = '#111';
+		- borderColor = '#eee';
+		- gradientColor1 = '#eee';
+		- gradientColor2 = '#888';
+	
+	|
+		<div id="preloader">
+			<style>
+				#preloader {
+					position: fixed;
+					left: 0;
+					top: 0;
+					height: 100%;
+					width: 100%;
+					background-color: ${backgroundColor};
+					z-index: 10;
+				}
+				#preloader-circle {
+					position: absolute;
+					left:50%;
+					top:50%;
+					margin-left: -25px;
+					margin-top: -25px;
+					width: 50px;
+					height: 50px;
+					border-radius: 50%;
+					border: 1px solid ${borderColor};
+					border-bottom: 0px solid transparent;
+					animation: rotation 0.3s linear infinite;
+				}
+				@keyframes rotation {
+					0% {
+						transform: rotate(0deg);
+					}
+					100% {
+						transform: rotate(360deg);
+					}
+				}
+				#preloader-image {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					margin-left: -7px;
+					margin-top: -15px;
+					width: 23px;
+					height: 31.7px;
+				}
+			</style>
+			<div id="preloader-circle"></div>
+			<svg id="preloader-image" version="1.0" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 23 32" xml:space="preserve" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.w3.org/2000/svg ">
+				<g>
+					<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="9.5119" y1="-4.3203" x2="-7.9764" y2="28.197">
+						<stop offset="0" style="stop-color:${gradientColor1}"/>
+						<stop offset="1" style="stop-color:${gradientColor2}"/>
+					</linearGradient>
+					<circle fill="url(#SVGID_1_)" cx="4.7" cy="4.7" r="4.7"/>
+					<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="14.1802" y1="-1.8097" x2="-3.3081" y2="30.7076">
+						<stop offset="0" style="stop-color:${gradientColor1}"/>
+						<stop offset="1" style="stop-color:${gradientColor2}"/>
+					</linearGradient>
+					<circle fill="url(#SVGID_2_)" cx="4.7" cy="15.9" r="4.7"/>
+					<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="18.8484" y1="0.701" x2="1.3601" y2="33.2183">
+						<stop offset="0" style="stop-color:${gradientColor1}"/>
+						<stop offset="1" style="stop-color:${gradientColor2}"/>
+					</linearGradient>
+					<circle fill="url(#SVGID_3_)" cx="4.7" cy="27.1" r="4.7"/>
+					<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="24.3584" y1="3.6643" x2="6.8701" y2="36.1816">
+						<stop offset="0" style="stop-color:${gradientColor1}"/>
+						<stop offset="1" style="stop-color:${gradientColor2}"/>
+					</linearGradient>
+					<circle fill="url(#SVGID_4_)" cx="14.9" cy="21.3" r="4.7"/>
+				</g>
+			</svg>
+			<script>
+				// hide preloader
+				document.addEventListener('DOMContentLoaded', () => {
+					const preloader = document.getElementById('preloader');
+					
+					let animationTimestamp = null;
+					const duration = 1000;
+					const preloaderFade = (timestamp) => {
+						if (!animationTimestamp) animationTimestamp = timestamp;
+						const time = timestamp - animationTimestamp;
+						preloader.style.opacity = 1 - time / duration;
+						if (time < duration) {
+							window.requestAnimationFrame(preloaderFade);
+						} else {
+							preloader.style.opacity = 0;
+							preloader.remove();
+						}
+					}
+					
+					window.requestAnimationFrame(preloaderFade);
+				});
+			</script>
+		</div>

@@ -1,0 +1,2086 @@
+@function vh($number)
+	@return calc(var(--vh, vh(1)) * #{$number})
+
+$laptop_width: 1366px
+$desktop_mobile_swith_width: 1200px
+$site_min_width: 320px
+
+$footer_height: vh(15)
+$header_height: vh(10)
+$content_height: vh(80)
+
+$color_background: #1e0b27
+
+
+=desktop
+	@media (min-width: $laptop_width)
+		@content
+
+=laptop
+	@media (min-width: $desktop_mobile_swith_width) and (max-width: $laptop_width)
+		@content
+
+=mobile
+	@media (max-width: $desktop_mobile_swith_width - 1px)
+		@content
+
+
+
+=page($pagetypes...)
+	@if length($pagetypes) == 0
+		@error '+page requres at least one parameter'
+	
+	$selector: ''
+	@each $pagetype in $pagetypes
+		@if ($selector != '')
+			$selector: $selector + ','
+		$selector: $selector + 'html[data-pagetype="#{$pagetype}"]'
+		@if & != null
+			$selector: $selector + ' ' + '#{&}'
+	
+	@at-root #{$selector}
+		@content
+
+$violet_pages: 'free'//, ..., ...
+
+
+=text-gradient($angle: 0deg)
+	background: linear-gradient($angle, #6614a7, #9a1a81, #e627c1)
+	-webkit-background-clip: text
+	-webkit-text-fill-color: transparent
+
+=placeholder
+	&::placeholder
+		@content
+	&::-moz-placeholder
+		@content
+	&::-webkit-input-placeholder
+		@content
+
+
+/*===========================================*/
+/*=================  FONTS  =================*/
+/*===========================================*/
+
+
+@font-face
+	font-family: 'Gilroy'
+	src: url('../fonts/Gilroy-Regular.otf')
+	font-weight: 200
+	font-style: normal
+
+@font-face
+	font-family: 'Gilroy'
+	src: url('../fonts/Gilroy-Light.otf')
+	font-weight: 100
+	font-style: normal
+
+// @font-face
+// 	font-family: 'Gilroy'
+// 	src: url('../fonts/Gilroy-LightItalic.otf')
+// 	font-weight: 300
+// 	font-style: normal
+
+@font-face
+	font-family: 'Gilroy'
+	src: url('../fonts/Gilroy-Medium.otf')
+	font-weight: 600
+	font-style: normal
+
+@font-face
+	font-family: 'Gilroy'
+	src: url('../fonts/Gilroy-ExtraBold.woff')
+	font-weight: 700
+	font-style: normal
+
+@font-face
+	font-family: 'Gilroy'
+	src: url('../fonts/Gilroy-Semibold.otf')
+	font-weight: 800
+	font-style: normal
+
+@font-face
+	font-family: 'Gilroy'
+	src: url('../fonts/Gilroy-Bold.otf')
+	font-weight: bold
+	font-style: normal
+
+// @font-face
+// 	font-family: 'Gilroy'
+// 	src: url('../fonts/Gilroy-BlackItalic.otf')
+// 	font-weight: bolder
+// 	font-style: normal
+
+
+
+
+
+
+
+/*==============================================*/
+/*=================  ELEMENTS  =================*/
+/*==============================================*/
+
+
+button
+	cursor: pointer
+
+p
+	+page('free')
+		margin: 0
+
+h1
+	margin: 0
+	
+	+page('free')
+		+text-gradient
+
+
+
+/*============================================*/
+/*=================  LAYOUT  =================*/
+/*============================================*/
+
+
+
+body
+	min-width: $site_min_width
+	margin: 0
+	font-family: "Gilroy"
+	background-color: $color_background
+	color: #9d76b1
+
+.content
+	box-sizing: border-box
+	padding-top: vh(5)
+	padding-bottom: vh(5)
+	overflow: hidden
+	
+	+page($violet_pages...)
+		min-height: $content_height
+	
+	+desktop
+		padding-left: 4.7vw
+		padding-right: 4.6vw
+	+laptop
+		padding-left: 4.7vw
+		padding-right: 4.6vw
+	+mobile
+		padding-right: 8.5vw
+		padding-left: 8.5vw
+	
+	+page('free')
+		height: 100%
+		padding-top: 0
+		padding-bottom: 0
+		
+		+mobile
+			padding-left: 0
+			padding-right: 0
+
+
+
+
+/*============================================*/
+/*=================  HEADER  =================*/
+/*============================================*/
+
+
+header
+	display: grid
+	grid-template-columns: 1fr 1fr
+	height: $header_height
+	padding-right: 6vw
+	padding-left: 6vw
+	box-sizing: border-box
+	
+	+page('free')
+		position: fixed
+		z-index: 1
+	
+	+desktop
+		grid-template-columns: 1fr 1fr
+		padding-top: vh(3.5)
+		width: 100%
+	+laptop
+		grid-template-columns: 1fr 1fr
+		padding-top: vh(3.5)
+		width: 100%
+	+mobile
+		grid-template-columns: 1fr 0fr
+		width: 100%
+		padding-top: 10px
+	
+	.logo-container
+		display: grid
+		grid-template-columns: 0fr 1fr
+		padding-top: 0px
+		
+		+mobile
+			padding-left: 3vw
+			padding-top: vh(1.3)
+			padding-top: 0
+			align-self: center
+		
+		a.frontpage-link
+			outline-color: #991b7f
+			align-self: center
+		
+		span
+			line-height: 0.9em
+			color: #fafafa
+			font-weight: 600
+			align-self: center
+			+desktop
+				font-size: 17px
+			+laptop
+				font-size: 10px
+			+mobile
+				font-size: 11px
+			+page('free')
+				display: none
+		
+		img.logo
+			+desktop
+				height: vh(4.3)
+			+laptop
+				height: vh(4.3)
+			+mobile
+				height: vh(5)
+	
+	#header-menu
+		+desktop
+			align-self: center
+			padding-right: 20px
+		+laptop
+			align-self: center
+			padding-right: 20px
+		+mobile
+			display: none
+		ul#topmenu
+			margin: 0
+			padding: 0
+			display: grid
+			grid-template-columns: 0fr 0fr 0fr 0fr 0fr
+			justify-content: center
+			
+			li
+				margin: 0
+				padding: 0
+				display: inline-block
+	
+	.tg-links
+		align-self: center
+		+mobile
+			display: none
+		+page('free')
+			display: none
+		ul#topmenu-telegram
+			+desktop
+				margin: 0
+				padding: 0
+				display: grid
+				grid-template-columns: 0fr 0fr 0fr
+				grid-gap: 22px
+				justify-content: center
+			+laptop
+				margin: 0
+				padding: 0
+				display: grid
+				grid-template-columns: 0fr 0fr 0fr
+				grid-gap: 17px
+				justify-content: center
+			li
+				+desktop
+					list-style-type: none
+					margin: 0
+					align-self: center
+					line-height: 0.9em
+				+laptop
+					list-style-type: none
+					margin: 0
+					align-self: center
+					line-height: 0.9em
+				
+				a
+					+desktop
+						text-decoration: none
+						color: #b4b4b4
+						transition: color 0.25s ease
+						font-size: 17px
+						font-weight: 600
+						&.active,
+						&:hover
+							color: #fafafa
+					+laptop
+						text-decoration: none
+						color: #b4b4b4
+						transition: color 0.25s ease
+						font-size: 14px
+						font-weight: 600
+						&.active,
+						&:hover
+							color: #fafafa
+			
+			li.tg-block
+				+desktop
+					padding: 0
+					border-radius: 50%
+					background: #30a7db
+					width: 27px
+					height: 27px
+				+laptop
+					padding: 0
+					border-radius: 50%
+					background: #30a7db
+					width: 25px
+					height: 25px
+				
+				img
+					height: 100%
+	
+	#top-langswitch
+		color: #b4b4b4
+		justify-self: end
+		position: relative
+		font-weight: 200
+		align-self: center
+		+mobile
+			display: none
+		+desktop
+			font-size: 17px
+		+laptop
+			font-size: 14px
+		
+		.current-lang
+			display: inline
+			padding: 10px
+			cursor: pointer
+			position: relative
+			background-color: #161c25
+			padding-right: 18px
+			
+			&::after
+				display: block
+				content: ''
+				position: absolute
+				top: 50%
+				left: 81%
+				transform: translate(0, -50%)
+				width: 0
+				height: 0
+				border-left: 5px solid transparent
+				border-right: 5px solid transparent
+				border-top: 6px solid #b4b4b4
+		
+		.lang-menu
+			background-color: #161c25
+			display: none
+			
+			&.opened
+				display: block
+				position: absolute
+				margin-top: 29px
+			
+			.lang-switch
+				padding: 10px
+				cursor: pointer
+				text-align: center
+				
+				&:hover
+					color: #fafafa
+	
+	#menu-button
+		background: transparent
+		border: none
+		justify-self: right
+		position: relative
+		padding: 0
+		
+		+desktop
+			height: 48px
+			width: 48px
+		+laptop
+			height: 48px
+			width: 48px
+			left: 12px
+		+mobile
+			height: 36px
+			width: 36px
+			align-self: center
+		
+		img
+			position: absolute
+			top: 50%
+			left: 50%
+			width: 50%
+			height: 50%
+			transform: translate(-50%, -50%)
+
+
+
+
+/*========================================================*/
+/*=================  PAGE: FREE-PAGE =====================*/
+/*========================================================*/
+
+#fullpage
+	height: vh(100)
+
+.page
+	box-sizing: border-box
+	height: 100%
+	padding-top: $header_height
+	padding-bottom: $footer_height
+	position: relative
+
+#fullpage,
+.section,
+.fp-tableCell
+	height: 100%!important
+	/* solve pageshifting bug in fullpage+safari */
+
+.fp-section.fp-table,
+.fp-tableCell
+	display: block!important
+
+
+.freepage-buttons
+	display: grid
+	
+	+desktop
+		grid-template-columns: 0fr 0fr
+	+laptop
+		grid-template-columns: 0fr 0fr
+	+mobile
+		justify-content: center
+	
+	a
+		
+		+desktop
+			height: vh(4.6)
+			width: vh(19)
+		+laptop
+			height: vh(6)
+			width: 14.5vw
+		+mobile
+			height: vh(6.8)
+			width: 82vw
+		
+		button
+			border: none
+			transition: all 0.25s ease
+			
+			&:hover
+				opacity: 0.8
+			
+			&:active
+				transform: scale(0.92)
+			
+			&.button-1
+				background-color: white
+				
+				+desktop
+					height: 100%
+					width: 100%
+					padding-top: vh(0.5)
+				+laptop
+					height: 100%
+					width: 100%
+					padding-top: vh(0.5)
+				+mobile
+					height: 100%
+					width: 100%
+					padding-top: vh(0.8)
+				
+				img
+					
+					+desktop
+						height: vh(2.5)
+					+laptop
+						height: vh(2.5)
+					+mobile
+						height: vh(4.8)
+			
+			&.button-2
+				background: linear-gradient(60deg, #6614a7, #9a1a81, #e627c1)
+				background-color: #9a1a81
+				font-family: "Gilroy"
+				font-weight: bold
+				color: #e690e8
+				
+				+desktop
+					height: 100%
+					width: 100%
+					font-size: vh(1.4)
+				+laptop
+					height: 100%
+					width: 100%
+					font-size: vh(1.4)
+				+mobile
+					height: 100%
+					width: 100%
+					font-size: vh(2.5)
+
+
+
+/*========================================================*/
+/*=================  FREE-PAGE: slide 1  =================*/
+/*========================================================*/
+
+
+$page1_content_padding_top: vh(0)
+$page1_content_padding_sides: 16.2vw
+
+.page-one
+	display: grid
+	
+	.page-content
+		display: grid
+		grid-template-columns: auto
+		grid-template-rows: 0fr 0fr
+		align-self: center
+		position: relative
+		
+		+desktop
+			padding-left: $page1_content_padding_sides
+			padding-right: $page1_content_padding_sides
+		+laptop
+			padding-left: 1.2vw
+			padding-right: 1.2vw
+	
+	.slogan-and-description
+		display: grid
+		grid-template-rows: 0fr 0fr
+		
+		+mobile
+			grid-row-gap: vh(2.5)
+			padding-left: 8.5vw
+		
+		.slogan
+			+text-gradient(9deg)
+			font-weight: bold
+			margin: 0
+			
+			+desktop
+				font-size: vh(6)
+			+laptop
+				font-size: vh(8)
+			+mobile
+				font-size: vh(5.3)
+				letter-spacing: 1px
+		
+		.description
+			margin: 0
+			color: #9d76b1
+			font-weight: 600
+			
+			+desktop
+				font-size: vh(2)
+				padding-left: 0.1vw
+				padding-top: vh(1.5)
+			+laptop
+				font-size: vh(2.8)
+				padding-left: 0.1vw
+				padding-top: vh(1.5)
+			+mobile
+				font-size: vh(2.5)
+				line-height: vh(2.5)
+	
+	.freepage-buttons
+		+desktop
+			padding-left: 0.2vw
+			padding-top: vh(5)
+		+laptop
+			padding-left: 0.2vw
+			padding-top: vh(5)
+		+mobile
+			padding-top: vh(22)
+	
+	.screenshots-slider
+		position: absolute
+		top: $page1_content_padding_top
+		right: $page1_content_padding_sides
+		width: 257px
+		height: 368px
+		
+		+laptop
+			right: 1.2vw
+			top: 15px
+		+mobile
+			display: none
+		
+		[class^="slide-"]
+			position: absolute
+			background-color: white
+			box-shadow: 0px 0px 15px rgba(0,0,0,0.6)
+			background-size: cover
+		
+		.slide-1
+			right: 78px
+			top: 26px
+			width: 179px
+			height: 316px
+			background-image: url('../images/screenshots/screen-stats.png')
+			transition: transform 0.3s ease
+			will-change: transform
+		
+		.slide-2
+			right: 40px
+			top: 13px
+			width: 192px
+			height: 342px
+			background-image: url('../images/screenshots/screen-report.png')
+			transition: transform 0.3s ease
+			will-change: transform
+		
+		.slide-3
+			right: 0
+			top: 0
+			width: 207px
+			height: 368px
+			background-image: url('../images/screenshots/screen-wallet.png')
+		
+		&.screenshots-slider:hover
+			@media (min-width: 1300px)
+				.slide-1
+					transform: translateX(-263px)
+				
+				.slide-2
+					transform: translateX(-130px)
+
+
+
+
+
+/*========================================================*/
+/*=================  FREE-PAGE: slide 2  =================*/
+/*========================================================*/
+
+
+.page-two
+	display: grid
+	
+	.page-content
+		display: grid
+		align-content: center
+		
+		+desktop
+			grid-template-rows: 0fr 0fr
+		+laptop
+			grid-template-rows: 0fr 0fr
+	
+	h2
+		margin: 0
+		+text-gradient(21deg)
+		justify-self: center
+		
+		+desktop
+			font-size: vh(5.2)
+		+laptop
+			font-size: vh(6.2)
+		+mobile
+			font-size: vh(5.3)
+	
+	.content-contaner
+		
+		+desktop
+			display: grid
+			grid-template-columns: 20vw 19vw 20vw
+			padding-top: vh(2.1)
+			grid-template-areas: "column-1 column-2 column-3"
+			justify-self: center
+		
+		+laptop
+			display: grid
+			grid-template-columns: 1fr 1fr 1fr
+			padding-top: vh(2.1)
+			grid-template-areas: "column-1 column-2 column-3"
+			justify-self: center
+			padding-left: 16px
+			padding-right: 16px
+		
+		+mobile
+			padding-left: 9vw
+			padding-right: 9vw
+	
+	.container-1
+		display: grid
+		
+		+desktop
+			grid-template-rows: 0fr 0fr 0fr
+			grid-area: column-3
+		+laptop
+			grid-template-rows: 0fr 0fr 0fr
+			grid-area: column-3
+			justify-self: end
+		+mobile
+			grid-template-columns: 1fr 1fr 1fr
+	
+	.container-2
+		text-align: center
+		
+		+desktop
+			grid-area: column-2
+			align-self: center
+		+laptop
+			grid-area: column-2
+			align-self: center
+	
+	.container-3
+		display: grid
+		
+		+desktop
+			grid-area: column-1
+		+laptop
+			grid-area: column-1
+		+mobile
+			grid-template-columns: 1fr 1fr 1fr
+			padding-top: vh(6.5)
+	
+	
+	.function-token,
+	.function-notifications,
+	.function-features
+		display: grid
+		
+		+desktop
+			grid-template-columns: 0fr 0fr
+		+laptop
+			grid-template-columns: 0fr 0fr
+		
+		+mobile
+			padding-top: vh(9.3)
+		
+		img
+			+desktop
+				height: vh(5)
+			+laptop
+				height: vh(8)
+			+mobile
+				height: vh(8)
+		
+		p
+			margin: 0
+			color: #9857fb
+			
+			+desktop
+				font-weight: 600
+				font-size: vh(2)
+			+laptop
+				font-weight: 600
+				font-size: vh(2.4)
+			+mobile
+				font-size: vh(2)
+				font-weight: 200
+				line-height: vh(2.55)
+				padding-top: vh(1.4)
+	
+	.function-token
+		
+		+desktop
+			padding-left: 5.3vw
+			order: 1
+			padding-top: vh(5)
+		+laptop
+			padding-left: 5.3vw
+			order: 1
+			padding-top: vh(5)
+		+mobile
+			justify-items: left
+			padding-right: 4vw
+		
+		p
+			+desktop
+				width: 8vw
+				padding-left: 1vw
+				padding-top: vh(0.5)
+				text-align: right
+			+laptop
+				width: 10vw
+				padding-left: 1vw
+				padding-top: vh(1.5)
+			+mobile
+				margin: 0
+	
+	.function-notifications
+		
+		+desktop
+			padding-left: 5.3vw
+			padding-top: 0.5vw
+		+laptop
+			padding-left: 5.3vw
+			padding-top: 0.5vw
+		+mobile
+			align-content: start
+			justify-items: center
+			padding-left: 2vw
+			padding-right: 2vw
+		
+		p
+			+desktop
+				padding-left: 1.7vw
+				padding-top: vh(1.5)
+			+laptop
+				padding-left: 1.7vw
+				padding-top: vh(2.5)
+			+mobile
+				text-align: center
+	
+	.function-features
+		
+		+desktop
+			padding-left: 7.6vw
+			padding-top: vh(5)
+		+laptop
+			padding-left: 7.6vw
+			padding-top: vh(5)
+		+mobile
+			justify-items: right
+			padding-left: 4vw
+		
+		p
+			+desktop
+				padding-left: 1vw
+				width: 9vw
+				padding-top: vh(1)
+				text-align: right
+			+laptop
+				padding-left: 1vw
+				width: 9vw
+				padding-top: vh(2)
+			+mobile
+				text-align: right
+	
+	button.run-video
+		background: transparent
+		border: none
+		
+		+desktop
+			width: 8vw
+		+laptop
+			width: 8vw
+		+mobile
+			width: 36vw
+			justify-self: center
+			padding-top: vh(2.2)
+		
+		p
+			background: transparent
+			border: none
+			color: #9857fb
+			font-weight: 200
+			margin: 0
+			+laptop
+				font-size: 16px
+			+mobile
+				justify-self: center
+				font-size: vh(2.2)
+		
+		img
+			+desktop
+				height: vh(5)
+			+laptop
+				height: vh(8)
+			+mobile
+				height: vh(8)
+		
+		@at-root #video-screen
+			position: fixed
+			left: 0
+			top: 0
+			width: 100%
+			height: 100%
+			background-color: black
+			transition: transform 1s cubic-bezier(0.86, 0, 0.07, 1), opacity 0.1s linear
+			transform: scale(1)
+			opacity: 1
+			z-index: 0
+			
+			&.hide
+				transform: scale(0.001)
+				opacity: 0
+			
+			#close-video
+				position: absolute
+				top: 5px
+				right: 5px
+				width: 40px
+				height: 40px
+				border: 1px solid rgba(255,255,255,0.25)
+				cursor: pointer
+				background-image: url('../images/close.svg')
+				background-position: center center
+				background-repeat: no-repeat
+				z-index: 1
+			
+			video
+				width: 100%
+				height: 100%
+			
+			#no-video-yet-message
+				position: absolute
+				top: 50%
+				width: 100%
+				text-align: center
+				font-size: 30px
+				color: white
+	
+	
+	.container-3
+		
+		.subcontainer-2
+			+desktop
+				padding-top: vh(2)
+				padding-bottom: vh(2)
+			+laptop
+				padding-top: vh(2)
+				padding-bottom: vh(2)
+			+mobile
+				padding-left: 2vw
+				padding-right: 2vw
+		
+		+mobile
+			.subcontainer-1 .title
+				text-align: left
+			
+			.subcontainer-2 .title
+				text-align: center
+			
+			.subcontainer-3 .title
+				text-align: right
+		
+		.title
+			margin: 0
+			color: #9a1a81
+			
+			+desktop
+				font-weight: 200
+				font-size: vh(2.3)
+			+laptop
+				font-weight: 200
+				font-size: vh(3)
+			+mobile
+				font-size: vh(2.5)
+				line-height: vh(3)
+				font-weight: 200
+				padding-top: vh(2.55)
+		
+		.description
+			
+			+desktop
+				margin: 0
+				color: #9d76b1
+				font-weight: 200
+				font-size: vh(1.6)
+			+laptop
+				margin: 0
+				color: #9d76b1
+				font-weight: 200
+				font-size: vh(2)
+			+mobile
+				display: none
+
+
+
+
+/*========================================================*/
+/*=================  FREE-PAGE: slide 3  =================*/
+/*========================================================*/
+
+
+.page-three
+	display: grid
+	
+	h2
+		margin: 0
+		+text-gradient(21deg)
+		justify-self: center
+		
+		+desktop
+			font-size: vh(5.2)
+		+laptop
+			font-size: vh(6.2)
+		
+		+mobile
+			font-size: vh(5.3)
+	
+	.page-content
+		display: grid
+		align-content: center
+		
+		+desktop
+			grid-template-rows: 0fr 0fr
+			height: vh(75)
+		+laptop
+			grid-template-rows: 0fr 0fr
+			height: vh(75)
+	
+	.roadmap
+		display: grid
+		
+		+desktop
+			justify-self: center
+			padding-top: vh(3)
+		+laptop
+			justify-self: center
+			padding-top: vh(3)
+		+mobile
+			grid-template-columns: 1fr 0fr
+			padding-right: 9.5vw
+			padding-left: 9vw
+			padding-top: vh(8)
+	
+	.roadmap-data
+		position: relative
+		
+		+desktop
+			margin-top: vh(3.5)
+		+laptop
+			margin-top: vh(3.5)
+		+mobile
+			display: grid
+			font-weight: bold
+			grid-template-rows: 0fr 0fr 0fr 0fr
+		
+		.milestone
+			
+			+desktop
+				position: absolute
+			+laptop
+				position: absolute
+			
+			&.september-2018
+				+desktop
+					left: 5px
+					top: 97%
+					width: 6vw
+				+laptop
+					left: 5px
+					top: 97%
+					width: 12vw
+			
+			&.november-2018
+				+desktop
+					top: -20.6%
+					left: 31.8%
+					width: 8vw
+				+laptop
+					top: -20.6%
+					left: 28.8%
+					width: 12vw
+				+mobile
+					padding-top: vh(8)
+			
+			&.december-2018
+				+desktop
+					top: -20.6%
+					left: 49.8%
+					text-align: right
+					width: 8vw
+				+laptop
+					top: -20.6%
+					left: 53.8%
+					text-align: right
+					width: 12vw
+				+mobile
+					padding-top: vh(9)
+			
+			&.february-2019
+				+desktop
+					right: 0
+					top: 97%
+					width: 13vw
+					text-align: right
+				+laptop
+					right: 0
+					top: 97%
+					width: 19vw
+					text-align: right
+				+mobile
+					padding-top: vh(4.5)
+			
+			.title
+				color: #9d76b1
+				font-weight: 600
+				
+				+desktop
+					font-size: vh(1.5)
+				+laptop
+					font-size: vh(2)
+				+mobile
+					font-size: vh(2.3)
+			
+			.description
+				color: #9d76b1
+				font-weight: 600
+				
+				+desktop
+					font-size: vh(1.5)
+				+laptop
+					font-size: vh(1.7)
+				+mobile
+					font-size: vh(2.2)
+			
+			&.ready
+				.title,
+				.description
+					color: #9a1a81
+		
+		.roadmap-image
+			+desktop
+				height: vh(20)
+			+laptop
+				height: vh(24)
+			+mobile
+				position: absolute
+				top: 0
+				right: 0
+				height: vh(49)
+		.mobile
+			+desktop
+				display: none
+			+laptop
+				display: none
+		.desktop
+			+mobile
+				display: none
+
+
+
+
+/*========================================================*/
+/*=================  FREE-PAGE: slide 4  =================*/
+/*========================================================*/
+
+
+.page-four
+	display: grid
+	
+	.page-content
+		display: grid
+		justify-content: center
+		align-content: center
+		
+		+desktop
+			grid-template-columns: 0fr 0fr
+		+laptop
+			grid-template-columns: 0fr 0fr
+			justify-content: space-between
+			padding-left: 1.2vw
+			padding-right: 1.2vw
+	
+	.content-title
+		
+		+desktop
+			display: grid
+			padding-right: 16vw
+			width: 23vw
+		+laptop
+			display: grid
+			width: 32vw
+			padding-right: 0
+		+mobile
+			justify-self: center
+		
+		.title-bounty
+			margin: 0
+			+text-gradient(33deg)
+			
+			+desktop
+				text-align: left
+			+laptop
+				text-align: left
+			+mobile
+				text-align: center
+			
+			.heading
+				margin: 0
+				color: #9a1a81
+				font-weight: bold
+				
+				+desktop
+					font-size: vh(7.5)
+					line-height: vh(8.5)
+				+laptop
+					font-size: vh(10.5)
+					line-height: vh(12.5)
+				+mobile
+					font-size: vh(5.3)
+			
+			.description
+				margin: 0
+				color: #501758
+				font-weight: 600
+				
+				+desktop
+					font-size: vh(7.5)
+				+laptop
+					font-size: vh(9.5)
+				+mobile
+					font-size: vh(4.2)
+		
+		.title-text
+			+desktop
+				margin: 0
+				color: #906ca3
+				font-weight: 600
+				padding-top: vh(4.3)
+				padding-left: 0.2vw
+				letter-spacing: 0.08vw
+				font-size: vh(1.6)
+			+laptop
+				margin: 0
+				color: #906ca3
+				font-weight: 600
+				padding-top: vh(4)
+				padding-left: 0.2vw
+				letter-spacing: 0.08vw
+				font-size: vh(2)
+			+mobile
+				display: none
+	
+	.content-table
+		+desktop
+			display: grid
+			grid-template-rows: 0fr 0fr
+		+laptop
+			display: grid
+			grid-template-rows: 0fr 0fr
+			width: 29vw
+		
+		.table-bounty
+			display: grid
+			
+			+mobile
+				grid-template-rows: repeat(6,vh(5.2))
+				padding-right: 9vw
+				padding-left: 9vw
+				padding-top: vh(8.5)
+		
+		.bounty-title
+			display: grid
+			grid-template-columns: 1fr 1fr
+			
+			+desktop
+				letter-spacing: 0.096vw
+				padding-top: vh(0.3)
+			+laptop
+				letter-spacing: 0.096vw
+				padding-top: vh(1.5)
+		
+		.title-conditions
+			color: #9d76b1
+			margin: 0
+			font-weight: bolder
+			
+			+desktop
+				font-size: vh(1.45)
+				padding-left: 0.3vw
+			
+			+laptop
+				font-size: vh(2.45)
+				padding-left: 0.3vw
+			
+			+mobile
+				font-size: vh(2.3)
+				padding-left: 0.5vw
+		
+		.title-reward
+			color: #9d76b1
+			margin: 0
+			font-weight: bolder
+			
+			+desktop
+				font-size: vh(1.45)
+				text-align: right
+			
+			+laptop
+				font-size: vh(2.45)
+				text-align: right
+			
+			+mobile
+				font-size: vh(2.3)
+				justify-self: right
+		
+		.internal
+			+desktop
+				font-weight: 200
+				font-size: vh(1.3)
+			+laptop
+				font-weight: 200
+				font-size: vh(2)
+			+mobile
+				display: none
+		
+		.row
+			display: grid
+			grid-template-columns: 2fr 1fr
+			align-items: center
+			
+			+desktop
+				padding-top: vh(1)
+				padding-bottom: vh(1)
+			+laptop
+				padding-top: vh(1)
+				padding-bottom: vh(1)
+			
+			&.row-1
+				+desktop
+					padding-top: vh(2)
+				+laptop
+					padding-top: vh(2)
+				+mobile
+					align-items: normal
+			
+			&:last-child
+				padding-top: vh(3)
+				text-align: right
+				padding-bottom: 0
+			
+			&.border
+				+desktop
+					border-bottom: 1px solid #906ca3
+				+laptop
+					border-bottom: 1px solid #906ca3
+				+mobile
+					border-bottom: 1px solid #9d76b1
+			
+			p
+				color: #9d76b1
+				margin: 0
+				
+				&.col-1
+					padding-top: vh(0.2)
+					font-weight: 200
+					
+					+desktop
+						font-size: vh(1.4)
+					+laptop
+						font-size: vh(2)
+					+mobile
+						font-size: vh(2.2)
+				
+				&.col-2
+					justify-self: right
+					padding-top: vh(0.3)
+					
+					+desktop
+						font-size: vh(1.4)
+						font-weight: 200
+					+laptop
+						font-size: vh(2)
+						font-weight: 200
+					+mobile
+						font-size: vh(2.2)
+						font-weight: 100
+				
+				&.clarification
+					font-weight: 600
+	
+	.freepage-buttons
+		padding-top: vh(3.5)
+		
+		+laptop
+			padding-top: vh(5)
+		+mobile
+			padding-top: vh(8.5)
+			grid-template-columns: 0fr 0fr
+		
+		a
+			+mobile
+				width: 40.6vw
+
+
+
+
+
+/*============================================*/
+/*=================  FOOTER  =================*/
+/*============================================*/
+
+
+#pager-place
+	position: absolute
+	left: 0
+	top: -46px
+	width: 100%
+	
+	+mobile
+		display: none
+	
+	ul#pager
+		margin: 0
+		padding: 0
+		list-style-type: none
+		width: 100px
+		margin-left: auto
+		margin-right: auto
+		
+		&::after
+			display: block
+			content: ''
+			clear: both
+		
+		li
+			margin: 0
+			padding: 0
+			float: left
+			width: 14px
+			height: 14px
+			border-radius: 50%
+			background-color: #351558
+			transition: all 0.3s ease
+			position: relative
+			
+			& + li
+				margin-left: 14px
+			
+			&.active
+				background-color: #991b7f
+			
+			a
+				display: block
+				position: absolute
+				top: 0
+				left: 0
+				width: 100%
+				height: 100%
+				font-size: 0
+				color: transparent
+
+
+$footer_text_color: #9d76b1
+
+footer
+	box-sizing: border-box
+	width: 100%
+	// height: $footer_height
+	padding: 20px
+	padding-left: 4.6vw
+	padding-right: 4.6vw
+	
+	+page('free')
+		position: fixed
+		left: 0
+		bottom: 0
+		+laptop
+			padding-left: 5.6vw
+			padding-right: 5.6vw
+			
+	+page($violet_pages...)
+		height: $footer_height
+	
+	p
+		color: $footer_text_color
+	
+	a
+		color: $footer_text_color
+		transition: all 0.25s ease
+		
+		&:hover
+			color: darken($footer_text_color, 20%)
+
+
+.footer-content
+	display: grid
+	
+	+desktop
+		grid-template-columns: 1fr 1fr 1fr
+	+laptop
+		grid-template-columns: 1fr 1fr 1fr
+	+mobile
+		grid-template-columns: 1fr 1fr
+		grid-template-rows: 0fr
+		padding-right: 4.3vw
+		padding-left: 4.3vw
+		align-self: end
+
+.footer-left
+	
+	.copyright
+		margin: 0
+		font-weight: 600
+		
+		+desktop
+			font-size: 12px
+		+laptop
+			font-size: 12px
+		+mobile
+			font-size: vh(1.7)
+		
+		.copyright-sign
+			
+			+desktop
+				font-size: 15px
+			+laptop
+				font-size: 15px
+			+mobile
+				font-size: vh(2)
+	
+	.at-sign
+		font-size: 15px
+	
+	.support-link
+		
+		+desktop
+			font-size: 12px
+			font-weight: 600
+			text-decoration: none
+		
+		+laptop
+			font-size: 12px
+			font-weight: 600
+			text-decoration: none
+		
+		+page($violet_pages...)
+			+mobile
+				display: none
+
+.footer-socials
+	display: grid
+	grid-template-columns: 0fr 0fr 0fr 0fr
+	
+	+desktop
+		grid-gap: 1.3vw
+		justify-self: center
+	+laptop
+		grid-gap: 1.3vw
+		justify-self: center
+	+mobile
+		place-content: center
+	
+	img
+		+desktop
+			height: vh(2.5)
+		+laptop
+			height: vh(2.5)
+		+mobile
+			height: vh(3)
+		
+		&.facebook
+			
+			+mobile
+				padding-right: 8.3vw
+		
+		&.telegram
+			
+			+desktop
+				padding-right: 0.5vw
+			+laptop
+				padding-right: 0.5vw
+			+mobile
+				padding-right: 8.3vw
+		
+		&.tradingview
+			
+			+desktop
+				position: relative
+				left: -7px
+				top: 1px
+			+laptop
+				position: relative
+				left: -7px
+				top: 1px
+			+mobile
+				padding-right: 7vw
+				padding-bottom: vh(0.1)
+		
+		&.medium
+			
+			+mobile
+				padding-right: 8vw
+				padding-top: vh(0.15)
+		
+		&.instagram
+			
+
+.footer-right
+	+page($violet_pages...)
+		+mobile
+			display: none
+	
+	+desktop
+		display: grid
+		grid-template-rows: 0fr 0fr 0fr
+		justify-self: right
+		padding-right: 0.4vw
+	
+	+laptop
+		display: grid
+		grid-template-rows: 0fr 0fr 0fr
+		justify-self: right
+		padding-right: 0.4vw
+	
+	.right-link
+		
+		+desktop
+			text-decoration: none
+			justify-self: end
+			font-weight: 600
+			font-size: 12px
+		
+		+laptop
+			text-decoration: none
+			justify-self: end
+			font-weight: 600
+			font-size: 12px
+
+
+
+/*==========================================*/
+/*=================  MENU  =================*/
+/*==========================================*/
+
+
+
+#menu-container
+	position: fixed
+	top: 0px
+	left: 0px
+	width: 100%
+	height: 100%
+	
+	@at-root
+		#all-except-menu
+			height: 100%
+			position: relative
+			z-index: 0
+			display: flex;
+			min-height: 100vh;
+			flex-direction: column;
+			
+			.content
+				flex: 1;
+			
+			+page($violet_pages...)
+				transition: filter 0.25s ease
+				will-change: filter
+		
+		#menu-container
+			transition: transform 0.25s ease
+			transform: translateX(100%)
+			will-change: transform
+		
+		body.menu-opened
+			#all-except-menu
+				+page($violet_pages...)
+					filter: blur(25px)
+			
+			#menu-container
+				transform: translateX(0%)
+	
+	.menu
+		display: grid
+		grid-template-rows: 0fr 1fr
+		height: 100%
+		padding-top: 10px
+		padding-bottom: 20px
+		
+		+desktop
+			padding-top: 2.4vw
+			padding-right: 4.5vw
+			padding-left: 4.5vw
+		+laptop
+			padding-top: 2.4vw
+			padding-right: 4.5vw
+			padding-left: 4.5vw
+		+mobile
+			padding-left: 4.6vw
+			padding-right: 4.6vw
+	
+	.menu-header
+		display: grid
+		grid-template-columns: 1fr 0fr
+		z-index: 1
+	
+	.header-lang
+		align-self: center
+		display: grid
+		grid-template-columns: 0fr 0fr
+		align-content: space-around
+		
+		+desktop
+			justify-self: right
+			padding-right: 3vw
+			padding-top: 1vh
+		+laptop
+			justify-self: right
+			padding-right: 3vw
+			padding-top: 1vh
+		+mobile
+			padding-left: 4vw
+			align-self: center
+	
+	.lang-switch
+		font-weight: 100
+		color: #b4b4b4
+		cursor: pointer
+		font-size: 16px
+		
+		&.active
+			color: white
+	
+	.lang-switch + .lang-switch
+		
+		+desktop
+			padding-left: 1vw
+		+laptop
+			padding-left: 1vw
+		+mobile
+			padding-left: 6vw
+	
+	.menu-close
+		border: none
+		background: transparent
+		height: 36px
+		width: 36px
+		position: relative
+		padding: 0
+		
+		img
+			position: absolute
+			top: 50%
+			left: 50%
+			width: 50%
+			height: 50%
+			transform: translate(-50%, -50%)
+			filter: grayscale(1)
+	
+	#side-menu
+		align-content: center
+		display: grid
+		justify-content: right
+		font-weight: 100
+		font-size: 16px
+		position: relative
+		top: -36px
+		
+		.menu-item
+			text-decoration: none
+			text-align: right
+			color: #b4b4b4
+			
+			+desktop
+				width: 9vw
+				margin-bottom: vh(5)
+			+laptop
+				width: 9vw
+				margin-bottom: vh(5)
+			
+			&.active
+				color: #fafafa
+			
+			& + .menu-item
+				+mobile
+					margin-top: vh(4)
+			
+			&.item-function
+				+mobile
+					margin-top: vh(6)
+			
+			&.item-bounty
+				+mobile
+					margin-top: vh(5.7)
+			
+			&.item-roadmap
+				+mobile
+					margin-top: vh(4.2)
+
+
+
+
+/*===========================================================*/
+/*=================  FREE-PAGE: BACKGROUND  =================*/
+/*===========================================================*/
+
+
+#page-background
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	background-color: #1e0b27
+	overflow: hidden
+	z-index: -1
+
+#far-layer
+	position: absolute
+	left: 0
+	top: 0
+	width: 100%
+	height: 100%
+	transition: all 0.8s ease
+
+#stars-layer
+	position: absolute
+	left: 0
+	top: 0
+	width: 100%
+	height: 100%
+
+#stars
+	position: absolute
+	left: 0
+	top: 0
+	width: 100%
+	height: 100%
+	background-image: url('../images/background/stars.png')
+
+#stars-fading
+	position: absolute
+	left: 0
+	top: 0
+	width: 100%
+	height: 100%
+	background: linear-gradient(to right, rgba(31,12,40,0) 0%, rgba(31,12,40,0.6) 100%)
+
+#galaxies
+	position: absolute
+	left: 0
+	top: 0
+	width: 100%
+	height: 100%
+	
+	+mobile
+		display: none
+
+#galaxy-1
+	position: absolute
+	top: 0%
+	left: 42%
+	width: 20vw
+	height: 16vw
+	background-image: url('../images/background/galaxy-1.png')
+	background-size: cover
+	background-position: center center
+
+#galaxy-2
+	position: absolute
+	top: 13%
+	left: 1%
+	width: 15vw
+	height: 10vw
+	background-image: url('../images/background/galaxy-2.png')
+	background-size: cover
+	background-position: center center
+
+#galaxy-3
+	position: absolute
+	top: 46%
+	left: 15%
+	width: 15vw
+	height: 10vw
+	background-image: url('../images/background/galaxy-3.png')
+	background-size: cover
+	background-position: center center
+
+#rotating-galaxy
+	position: absolute
+	top: 75%
+	left: 5%
+	transform: scaleX(0.6) skewX(50deg)
+
+#rotating-galaxy-inner
+	width: 200px
+	height: 200px
+	background-image: url('../images/background/galaxy-ring.png')
+	background-size: cover
+	animation-name: galaxy-rotation
+	animation-duration: 20s
+	animation-timing-function: linear
+	animation-iteration-count: infinite
+
+@keyframes galaxy-rotation
+	0%
+		transform: rotate(0deg)
+	100%
+		transform: rotate(360deg)
+
+#light-source
+	$color: #8c36b4
+	$r: red($color)
+	$g: green($color)
+	$b: blue($color)
+	position: absolute
+	right: -8%
+	top: 0
+	width: 150vh
+	height: 150vh
+	background-image: radial-gradient(circle closest-side, rgba($r,$g,$b,0.65) 0%, rgba($r,$g,$b,0) 100%)
+	background-repeat: no-repeat
+	transform: translate(60%, -15%)
+
+.planet
+	will-change: transform, background
+	position: absolute
+	border-radius: 50%
+	width: 200px
+	height: 200px
+	overflow: hidden
+	
+	.texture
+		position: absolute
+		width: 100%
+		height: 100%
+		background-size: cover
+		mix-blend-mode: hard-light
+		image-rendering: optimizeSpeed
+
+#planet-1 .texture
+	background-image: url('../images/background/planet-texture-1.png')
+
+#planet-2 .texture
+	background-image: url('../images/background/planet-texture-2.png')
+
+#planet-3 .texture
+	background-image: url('../images/background/planet-texture-3.png')
+
+#planet-4 .texture
+	background-image: url('../images/background/planet-texture-4.png')
+
+.planet::after
+	display: block
+	content: ''
+	position: absolute
+	top: 25%
+	left: 25%
+	width: 50%
+	height: 50%
+	opacity: 0
+	transition: all 0.5s ease
+	will-change: transform, opacity
+
+.planet.active::after
+	animation-name: planet-icon
+	animation-duration: 1.5s
+	opacity: 0.6
+
+@keyframes planet-icon
+	0%
+		opacity: 0
+	35%
+		opacity: 1
+		transform: scale(1.3)
+	100%
+		opacity: 0.6
+
+
+#planet-1::after
+	background-image: url('../images/background/icon-planet-1.svg')
+
+#planet-2::after
+	background-image: url('../images/background/icon-planet-2.svg')
+
+#planet-3::after
+	background-image: url('../images/background/icon-planet-3.svg')
+
+#planet-4::after
+	background-image: url('../images/background/icon-planet-4.svg')
+
+#comets
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	transform: rotate(-20deg)
+	
+	+mobile
+		display: none
+	
+	[class^='comet']
+		position: absolute
+		animation-name: deepspace-comet
+		animation-timing-function: linear
+		animation-iteration-count: infinite
+		
+		&[class*='bright']
+			width: 300px
+			margin-left: -150px
+			height: 4px
+			border-radius: 2px
+			background: linear-gradient(to right, rgba(220, 52, 247, 0) 0%, rgba(220, 52, 247, 0.1) 100%)
+			
+			&[class*='-1']
+				top: 20%
+				left: 10%
+				animation-duration: 4s
+				animation-delay: -5s
+			
+			&[class*='-2']
+				top: 50%
+				left: 20%
+				animation-duration: 3s
+				animation-delay: -4s
+			
+			&[class*='-3']
+				top: 75%
+				left: 30%
+				animation-duration: 2s
+				animation-delay: -3s
+		
+		&[class*='long']
+			width: 400px
+			margin-left: -150px
+			height: 1.5px
+			border-radius: 0.75px
+			background: linear-gradient(to right, rgba(142, 52, 247, 0) 0%, rgba(142, 52, 247, 0.1) 100%)
+			
+			&[class*='-1']
+				top: 53%
+				left: 0%
+				animation-duration: 6s
+				animation-delay: -2s
+			
+			&[class*='-2']
+				top: 79%
+				left: 0%
+				animation-duration: 5.5s
+				animation-delay: -3s
+			
+			&[class*='-3']
+				top: 86%
+				left: 0%
+				background: linear-gradient(to right, rgba(142, 52, 247, 0.1) 0%, rgba(142, 52, 247, 0) 100%)
+				animation-duration: 5s
+				animation-delay: -4s
+				animation-direction: reverse
+		
+		&[class*="short"]
+			width: 100px
+			height: 2px
+			border-radius: 1px
+			background: linear-gradient(to right, rgba(142, 52, 247, 0) 0%, rgba(142, 52, 247, 0.1) 100%)
+			
+			&[class*='-1']
+				top: 11%
+				left: 0%
+				animation-duration: 11s
+				animation-delay: -2s
+			
+			&[class*='-2']
+				top: 37%
+				left: 0%
+				animation-duration: 10s
+				animation-delay: -5s
+			
+			&[class*='-3']
+				top: 72%
+				left: 0%
+				animation-duration: 9s
+				animation-delay: -6s
+			
+			&[class*='-4']
+				top: 91%
+				left: 0%
+				animation-duration: 9s
+				animation-delay: -7s
+
+@keyframes deepspace-comet
+	from
+		left: -200%
+	to
+		left: 200%
+

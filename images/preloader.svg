@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.0" id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 23 32" xml:space="preserve">
+<g>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="9.5119" y1="-4.3203" x2="-7.9764" y2="28.197">
+		<stop offset="0" style="stop-color:#E15DD3"/>
+		<stop offset="1" style="stop-color:#8E34F7"/>
+	</linearGradient>
+	<circle fill="url(#SVGID_1_)" cx="4.7" cy="4.7" r="4.7"/>
+	<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="14.1802" y1="-1.8097" x2="-3.3081" y2="30.7076">
+		<stop offset="0" style="stop-color:#E15DD3"/>
+		<stop offset="1" style="stop-color:#8E34F7"/>
+	</linearGradient>
+	<circle fill="url(#SVGID_2_)" cx="4.7" cy="15.9" r="4.7"/>
+	<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="18.8484" y1="0.701" x2="1.3601" y2="33.2183">
+		<stop offset="0" style="stop-color:#E15DD3"/>
+		<stop offset="1" style="stop-color:#8E34F7"/>
+	</linearGradient>
+	<circle fill="url(#SVGID_3_)" cx="4.7" cy="27.1" r="4.7"/>
+	<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="24.3584" y1="3.6643" x2="6.8701" y2="36.1816">
+		<stop offset="0" style="stop-color:#E15DD3"/>
+		<stop offset="1" style="stop-color:#8E34F7"/>
+	</linearGradient>
+	<circle fill="url(#SVGID_4_)" cx="14.9" cy="21.3" r="4.7"/>
+</g>
+</svg>

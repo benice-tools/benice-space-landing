@@ -1,0 +1,133 @@
+// The nonce is needed to prevent browser caching of scripts/styles
+- nonce = Math.round(Math.random() * 1e16)
+
+
+doctype html
+html data-pagetype="${this.pageType}"
+	
+	head
+		meta charset="utf8"
+		meta name="viewport" content="width=device-width, initial-scale=1"
+		meta name="description" content="Telegram bot that improves trading experience"
+		
+		link rel="icon" type='image/x-icon' href="favicons/favicon16x16.ico" sizes="16x16"
+		link rel="icon" type='image/x-icon' href="favicons/favicon32x32.ico" sizes="32x32"
+		
+		=partial('analytics')
+		=mixin('analytics-in-head')
+		
+		link rel="stylesheet" href="styles/styles.css?${nonce}"
+		= this.pageStyles
+		
+		title
+			- if (this.pageTitle)
+				| ${this.pageTitle} | Benice – telegram bot for trading cryptocurrencies
+			- else
+				| Benice – telegram bot for trading cryptocurrencies
+	
+	
+	body
+		
+		=partial('preloader')
+		=mixin('preloader', 'violet')
+		
+		=mixin('analytics-in-body')
+		
+		
+		#all-except-menu
+			
+			header#header
+				
+				.logo-container
+					a.frontpage-link href="https://benice.tools/"
+						img.logo src="images/logo.svg"
+				
+					span data-lang="en" |&nbsp;PERSONAL ASSISTANT
+					span data-lang="ru" |&nbsp;ПЕРСОНАЛЬНЫЙ АССИСТЕНТ
+					
+				- if this.pageHeaderMenu
+					#header-menu
+						nav
+							= this.pageHeaderMenu
+				
+				button#menu-button
+					img src="images/menu.svg"
+			
+			
+			.content
+				= this.pageContent
+			
+			
+			footer
+				
+				.footer-content
+					
+					.footer-left
+						p.copyright
+							span.copyright-sign ©&nbsp;
+							span Planet&nbsp;LLC.
+						a.support-link href="mailto:support@benice.tools"
+							span support
+							span.at-sign @
+							span benice.tools
+					
+					.footer-socials
+						a target="_blank" href="https://www.facebook.com/benice.tool/"
+							img.facebook src="images/socials/facebook.svg"
+						
+						a target="_blank" href="#go-tg-news-channel"
+							img.telegram src="images/socials/telegram.svg"
+						
+						a target="_blank" href="https://ru.tradingview.com/u/benice_trader/"
+							img.tradingview src="images/socials/tradingview.svg"
+						
+						/ a target="_blank" href="https://medium.com/@benice.tool"
+						/ 	img.medium src="images/socials/medium.svg"
+						
+						a target="_blank" href="https://www.instagram.com/benice.tool/"
+							img.instagram src="images/socials/instagram.svg"
+					
+					.footer-right
+						
+						a.right-link href="#"
+							span data-lang="en" Terms of Use
+							span data-lang="ru" Правила пользования
+						
+						a.right-link href="#"
+							span data-lang="en" Privacy policy
+							span data-lang="ru" Политика конфиденциальности
+						
+						a.right-link href="#"
+							span data-lang="en" Public Offer Agreement
+							span data-lang="ru" Публичная оферта
+				
+				= this.pageFooterAdditional
+			
+			
+			- if this.pageBackground
+				#page-background
+					= this.pageBackground
+		
+		
+		nav#menu-container
+			.menu
+				.menu-header
+					.header-lang
+						.lang-switch data-langswitch="ru" RUS
+						.lang-switch data-langswitch="en" ENG
+					button.menu-close#close-menu-button
+						img src="images/close.svg"
+				
+				- if this.pageSidemenu
+					#side-menu
+						= this.pageSidemenu
+		
+		
+		= this.pageBodyAdditional
+		
+		
+		script src="lib/js.cookie/js.cookie.js?${nonce}"
+		script src="scripts/main.js?${nonce}"
+		script src="scripts/languages.js?${nonce}"
+		= this.pageScripts
+		

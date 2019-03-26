@@ -1,0 +1,13 @@
+=mixin('sidemenu')
+	a class="menu-item" href="#section-1"
+		span data-lang="en" Binance Extension for Telegram
+		span data-lang="ru" Расширение Binance для Telegram
+	a class="menu-item item-function" href="#section-2"
+		span data-lang="en" Function
+		span data-lang="ru" Функции
+	a class="menu-item item-bounty" href="#section-3"
+		span data-lang="en" Roadmap
+		span data-lang="ru" Дорожная карта
+	a class="menu-item item-roadmap" href="#section-4"
+		span data-lang="en" Bounty
+		span data-lang="ru" Bounty

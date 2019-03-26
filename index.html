@@ -1,0 +1,90 @@
+<!DOCTYPE html><html data-pagetype="free"><head><meta charset="utf8" /><meta content="width=device-width, initial-scale=1" name="viewport" /><meta content="Telegram bot that improves trading experience" name="description" /><link href="favicons/favicon16x16.ico" rel="icon" sizes="16x16" type="image/x-icon" /><link href="favicons/favicon32x32.ico" rel="icon" sizes="32x32" type="image/x-icon" /><link href="styles/styles.css?180500636136960" rel="stylesheet" /><link href="lib/fullPage.js/fullpage.min.css" rel="stylesheet" /><title>Benice – telegram bot for trading cryptocurrencies</title></head><body><div id="preloader">
+ <style>
+  #preloader {
+   position: fixed;
+   left: 0;
+   top: 0;
+   height: 100%;
+   width: 100%;
+   background-color: #210b39;
+   z-index: 10;
+  }
+  #preloader-circle {
+   position: absolute;
+   left:50%;
+   top:50%;
+   margin-left: -25px;
+   margin-top: -25px;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   border: 1px solid #E15DD3;
+   border-bottom: 0px solid transparent;
+   animation: rotation 0.3s linear infinite;
+  }
+  @keyframes rotation {
+   0% {
+    transform: rotate(0deg);
+   }
+   100% {
+    transform: rotate(360deg);
+   }
+  }
+  #preloader-image {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   margin-left: -7px;
+   margin-top: -15px;
+   width: 23px;
+   height: 31.7px;
+  }
+ </style>
+ <div id="preloader-circle"></div>
+ <svg id="preloader-image" version="1.0" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 23 32" xml:space="preserve" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.w3.org/2000/svg ">
+  <g>
+   <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="9.5119" y1="-4.3203" x2="-7.9764" y2="28.197">
+    <stop offset="0" style="stop-color:#E15DD3"/>
+    <stop offset="1" style="stop-color:#8E34F7"/>
+   </linearGradient>
+   <circle fill="url(#SVGID_1_)" cx="4.7" cy="4.7" r="4.7"/>
+   <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="14.1802" y1="-1.8097" x2="-3.3081" y2="30.7076">
+    <stop offset="0" style="stop-color:#E15DD3"/>
+    <stop offset="1" style="stop-color:#8E34F7"/>
+   </linearGradient>
+   <circle fill="url(#SVGID_2_)" cx="4.7" cy="15.9" r="4.7"/>
+   <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="18.8484" y1="0.701" x2="1.3601" y2="33.2183">
+    <stop offset="0" style="stop-color:#E15DD3"/>
+    <stop offset="1" style="stop-color:#8E34F7"/>
+   </linearGradient>
+   <circle fill="url(#SVGID_3_)" cx="4.7" cy="27.1" r="4.7"/>
+   <linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="24.3584" y1="3.6643" x2="6.8701" y2="36.1816">
+    <stop offset="0" style="stop-color:#E15DD3"/>
+    <stop offset="1" style="stop-color:#8E34F7"/>
+   </linearGradient>
+   <circle fill="url(#SVGID_4_)" cx="14.9" cy="21.3" r="4.7"/>
+  </g>
+ </svg>
+ <script>
+  // hide preloader
+  document.addEventListener('DOMContentLoaded', () => {
+   const preloader = document.getElementById('preloader');
+
+   let animationTimestamp = null;
+   const duration = 1000;
+   const preloaderFade = (timestamp) => {
+    if (!animationTimestamp) animationTimestamp = timestamp;
+    const time = timestamp - animationTimestamp;
+    preloader.style.opacity = 1 - time / duration;
+    if (time < duration) {
+     window.requestAnimationFrame(preloaderFade);
+    } else {
+     preloader.style.opacity = 0;
+     preloader.remove();
+    }
+   }
+
+   window.requestAnimationFrame(preloaderFade);
+  });
+ </script>
+</div><div id="all-except-menu"><header id="header"><div class="logo-container"><a class="frontpage-link" href="https://benice.tools/"><img class="logo" src="images/logo.svg" /></a><span data-lang="en">|&nbsp;PERSONAL ASSISTANT</span><span data-lang="ru">|&nbsp;ПЕРСОНАЛЬНЫЙ АССИСТЕНТ</span></div><button id="menu-button"><img src="images/menu.svg" /></button></header><div class="content"><div id="fullpage"><div class="section"><div class="page page-one"><div class="page-content"><div class="slogan-and-description"><p class="slogan"><span data-lang="en">BINANCE<br>EXTENSION<br>FOR&nbsp;TELEGRAM</span><span data-lang="ru">Расширение<br>BINANCE<br>для&nbsp;TELEGRAM</span></p><p class="description"><span data-lang="en">Telegram bot that improves<br>trading experience</span><span data-lang="ru">Telegram-бот <br> в&nbsp;помощь трейдеру</span></p></div><div class="freepage-buttons"><a href="#go-tg-assistant" target="_blank"><button class="button-1"><img src="images/logo.svg" /></button></a><a href="#go-tg-assistant" target="_blank"><button class="button-2"><span data-lang="en">Try it free!</span><span data-lang="ru">Попробовать бесплатно!</span></button></a></div><div class="screenshots-slider"><div class="slide-1"></div><div class="slide-2"></div><div class="slide-3"></div></div></div></div></div><div class="section"><div class="page page-two"><div class="page-content"><h2><span data-lang="en">Function</span><span data-lang="ru">Функции</span></h2><div class="content-contaner"><div class="container-1"><div class="function-token"><img src="images/functions/function-1.svg" /><p><span data-lang="en">SECURE TOKEN STORAGE</span><span data-lang="ru">БЕЗОПАСНОЕ ХРАНЕНИЕ ТОКЕНОВ</span></p></div><div class="function-notifications"><img src="images/functions/function-2.svg" /><p><span data-lang="en">NOTIFICATIONS</span><span data-lang="ru">ОПОВЕЩЕНИЯ</span></p></div><div class="function-features"><img src="images/functions/function-3.svg" /><p><span data-lang="en">FULL FIXATION IN USDT</span><span data-lang="ru">ФИКСАЦИЯ ПОРТФЕЛЯ В USDT</span></p></div></div><div class="container-2"><button class="run-video" data-js="toggle-video"><img src="images/functions/function-4.svg" /><p><span data-lang="en">Watch video</span><span data-lang="ru">Смотреть видео</span></p></button></div><div class="container-3"><div class="subcontainer-1"><p class="title"><span data-lang="en">Extended balances view</span><span data-lang="ru">Подробный просмотр баланса</span></p><p class="description"><span data-lang="en">Different views.<br>Balance are display in BTC, USD and other assets. Instant image rendering of actual balances</span><span data-lang="ru">Раличные режимы отображения.<br>Баланс может отображаться в BTC, USD и других формах. Мгновенная доставка изображения с текущими балансами.</span></p></div><div class="subcontainer-2"><p class="title"><span data-lang="en">Extended stats&nbsp;view</span><span data-lang="ru">Просмотр расширенной статистики</span></p><p class="description"><span data-lang="en">Last order profit<br>Date interval stats</span><span data-lang="ru">Прибыль с последнего ордера<br>Статистика по датам</span></p></div><div class="subcontainer-3"><p class="title"><span data-lang="en">Extended track order view</span><span data-lang="ru">Расширенные отчёты об ордерах</span></p><p class="description"><span data-lang="en">Complete the operation<br>Blank transactions<br> Canceled operations</span><span data-lang="ru">Завершение операций<br>Отменённые транзакции</span></p></div></div></div></div></div></div><div class="section"><div class="page page-three"><div class="page-content"><h2><span data-lang="en">Roadmap</span><span data-lang="ru">Дорожная карта</span></h2><div class="roadmap"><div class="roadmap-data"><div class="milestone september-2018 ready"><p class="title"><span data-lang="en">September 2018:</span><span data-lang="ru">Сентябрь 2018:</span></p><p class="description"><span data-lang="en">RC Telegram Bot</span><span data-lang="ru">Релиз-кандидат Telegram-бота</span></p></div><div class="milestone november-2018"><p class="title"><span data-lang="en">November 2018:</span><span data-lang="ru">Ноябрь 2018:</span></p><p class="description"><span data-lang="en">Beta-APK Android</span><span data-lang="ru">Бета-версия приложения Android</span></p></div><div class="milestone december-2018"><p class="title"><span data-lang="en">December 2018:</span><span data-lang="ru">Декабрь 2018:</span></p><p class="description"><span data-lang="en">RC APK Android</span><span data-lang="ru">Релиз-кандидат приложения Android</span></p></div><div class="milestone february-2019"><p class="title"><span data-lang="en">February 2019:</span><span data-lang="ru">Февраль 2019:</span></p><p class="description desktop"><span data-lang="en">Social network for Traders and Holders of Crypto Currencies</span><span data-lang="ru">Социальная сеть для трейдеров и держателей криптовалют</span></p><p class="description mobile"><span data-lang="en">Social network<br>for Traders and Holders<br>of Crypto Currencies</span><span data-lang="ru">Социальная сеть<br>для трейдеров<br>и держателей криптовалют</span></p></div><img class="roadmap-image desktop" src="images/roadmap/roadmap-horizontal.svg" /><img class="roadmap-image mobile" src="images/roadmap/roadmap-vertical.svg" /></div></div></div></div></div><div class="section"><div class="page page-four"><div class="page-content"><div class="content-title"><p class="title-bounty"><span class="heading"><span data-lang="en">Bounty Program</span><span data-lang="ru">Программа Bounty</span></span><br /><span class="description"><span data-lang="en">for beta-test</span><span data-lang="ru">для бета-тестирования</span></span></p><p class="title-text"><span data-lang="en">Friends, at&nbsp;the&nbsp;stage of&nbsp;beta&nbsp;testing of&nbsp;our<br>product we&nbsp;offer&nbsp;you to&nbsp;become the&nbsp;first users<br> and&nbsp;use free features of&nbsp;the&nbsp;service</span><span data-lang="ru">Друзья, на&nbsp;стадии бета-тестирования нашего продукта мы предлагаем вам стать первыми пользователями и&nbsp;использовать бесплатные возможности нашего сервиса</span></p></div><div class="content-table"><div class="table-bounty"><div class="bounty-title"><p class="title-conditions"><span data-lang="en">Conditions</span><span data-lang="ru">Условия</span></p><p class="title-reward"><span data-lang="en">Reward</span><span data-lang="ru">Вознаграждение</span><span class="desktop"><br /><span class="internal"><span data-lang="en">(to&nbsp;internal account<br> of&nbsp;the service)</span><span data-lang="ru">(на&nbsp;внутренний счёт сервиса)</span></span></span></p></div><div class="row row-1 border"><p class="col-1"><span data-lang="en">Once 100 users</span><span data-lang="ru">Первые 100 пользователей</span></p><p class="col-2"><span data-lang="en">1 token</span><span data-lang="ru">1 токен</span></p></div><div class="row border"><p class="col-1"><span data-lang="en">Feedback after use tool</span><span data-lang="ru">Отзыв после использования</span></p><p class="col-2"><span data-lang="en">0.2 token</span><span data-lang="ru">0,2 токена</span></p></div><div class="row border"><p class="col-1"><span data-lang="en">Bug bounty</span><span data-lang="ru">Нахождение бага</span></p><p class="col-2"><span data-lang="en">1 token</span><span data-lang="ru">1 токен</span></p></div><div class="row"><p class="col-1"><span data-lang="en">Following for your Ref-link</span><span data-lang="ru">Заход по вашей реферальной ссылке</span></p><p class="col-2"><span data-lang="en">0.2 token</span><span data-lang="ru">0,2 токена</span></p></div><div class="row"><p class="col-1"></p><p class="col-2 clarification"><span data-lang="en">(1&nbsp;token&nbsp;=&nbsp;0.005BTC)</span><span data-lang="ru">(1 токен = 0.005BTC)</span></p></div></div><div class="freepage-buttons"><a href="#go-tg-assistant" target="_blank"><button class="button-1"><img src="images/logo.svg" /></button></a><a href="#go-tg-assistant" target="_blank"><button class="button-2"><span data-lang="en">Try it free!</span><span data-lang="ru">Попробовать бесплатно!</span></button></a></div></div></div></div></div></div></div><footer><div class="footer-content"><div class="footer-left"><p class="copyright"><span class="copyright-sign">©&nbsp;</span><span>Planet&nbsp;LLC.</span></p><a class="support-link" href="mailto:support@benice.tools"><span>support</span><span class="at-sign">@</span><span>benice.tools</span></a></div><div class="footer-socials"><a href="https://www.facebook.com/benice.tool/" target="_blank"><img class="facebook" src="images/socials/facebook.svg" /></a><a href="#go-tg-news-channel" target="_blank"><img class="telegram" src="images/socials/telegram.svg" /></a><a href="https://ru.tradingview.com/u/benice_trader/" target="_blank"><img class="tradingview" src="images/socials/tradingview.svg" /></a><a href="https://www.instagram.com/benice.tool/" target="_blank"><img class="instagram" src="images/socials/instagram.svg" /></a></div><div class="footer-right"><a class="right-link" href="#"><span data-lang="en">Terms of Use</span><span data-lang="ru">Правила пользования</span></a><a class="right-link" href="#"><span data-lang="en">Privacy policy</span><span data-lang="ru">Политика конфиденциальности</span></a><a class="right-link" href="#"><span data-lang="en">Public Offer Agreement</span><span data-lang="ru">Публичная оферта</span></a></div></div><div id="pager-place"><ul id="pager"><li title="First page"><a href="#section-1">First page</a></li><li title="Second page"><a href="#section-2">Second page</a></li><li title="Third page"><a href="#section-3">Third page</a></li><li title="Last page"><a href="#section-4">Last page</a></li></ul></div></footer><div id="page-background"><div id="far-layer"><div id="stars-layer"><div id="stars"></div><div id="stars-fading"></div></div><div id="galaxies"><div id="galaxy-1"></div><div id="galaxy-2"></div><div id="galaxy-3"></div><div id="rotating-galaxy"><div id="rotating-galaxy-inner"></div></div></div></div><div id="comets"><div class="comet-bright-1"></div><div class="comet-bright-2"></div><div class="comet-bright-3"></div><div class="comet-long-1"></div><div class="comet-long-2"></div><div class="comet-long-3"></div><div class="comet-short-1"></div><div class="comet-short-2"></div><div class="comet-short-3"></div><div class="comet-short-4"></div></div><div id="light-source"></div><div id="planets"><div class="planet active" id="planet-1"><div class="texture"></div></div><div class="planet" id="planet-2"><div class="texture"></div></div><div class="planet" id="planet-3"><div class="texture"></div></div><div class="planet" id="planet-4"><div class="texture"></div></div></div></div></div><nav id="menu-container"><div class="menu"><div class="menu-header"><div class="header-lang"><div class="lang-switch" data-langswitch="ru">RUS</div><div class="lang-switch" data-langswitch="en">ENG</div></div><button class="menu-close" id="close-menu-button"><img src="images/close.svg" /></button></div><div id="side-menu"><a class="menu-item" href="#section-1"><span data-lang="en">Binance Extension for Telegram</span><span data-lang="ru">Расширение Binance для Telegram</span></a><a class="menu-item item-function" href="#section-2"><span data-lang="en">Function</span><span data-lang="ru">Функции</span></a><a class="menu-item item-bounty" href="#section-3"><span data-lang="en">Roadmap</span><span data-lang="ru">Дорожная карта</span></a><a class="menu-item item-roadmap" href="#section-4"><span data-lang="en">Bounty</span><span data-lang="ru">Bounty</span></a></div></div></nav><div class="hide" id="video-screen"><div data-js="toggle-video" id="close-video"></div><video autoplay="true" controls="true" id="video" muted="true"><source src="video/test-video.mp4" type="video/mp4" /></video><div id="no-video-yet-message">Video coming soon...</div></div><script src="lib/js.cookie/js.cookie.js?180500636136960"></script><script src="scripts/main.js?180500636136960"></script><script src="scripts/languages.js?180500636136960"></script><script src="scripts/planets.js?470370047077551"></script><script src="lib/fullPage.js/fullpage.min.js"></script><script src="scripts/free-page.js?470370047077551"></script></body></html>
